@@ -54,6 +54,9 @@ new_window pixel 1
 # thin borders
 # hide_edge_borders both
 
+#Set round corners
+border_radius 15
+
 # Set inner/outer gaps
 gaps inner 8
 gaps outer 3
@@ -327,6 +330,7 @@ set $ws10 10:
 assign [class="LibreWolf"] $ws2
 #assign [class="URxvt"] $ws1
 assign [class="Subl"] $ws3
+assign [class="subl"] $ws3
 # assign [class="Skype"] $ws5
 assign [class="qBittorrent"] $ws10
 
@@ -378,7 +382,10 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # set wallpaper
-exec --no-startup-id nitrogen --restore
+#Wallpaper
+exec_always feh --bg-scale /home/me/Documents/wallpapers/kurisu.jpg
+
+#exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 #set powersavings for display:
@@ -392,13 +399,19 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 
 #exec --no-startup-id sleep 3 && thunar
+
+#Touchpad click om tap
+exec synclient TapButton1=1 ClickFinger1=0
+exec synclient TapButton2=3 ClickFinger2=0
+exec synclient TapButton3=2 ClickFinger3=0 
+
 #Default apps
 exec librewolf
 exec kitty
+exec qbittorrent
 exec subl
 exec flameshot
-exec qbittorrent
-exec wasp-cli connect
+exec warp-cli connect
 exec picom
 #set lockscreen
 exec --no-startup-id betterlockscreen -u /home/me/Documents/wallpapers/eclipse_moon_astronomy_119271_1920x1080.jpg
@@ -556,8 +569,6 @@ exec --no-startup-id redshift
 #keyboard layout
 exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 
-#Wallpaper
-exec_always feh --bg-scale /home/me/Documents/wallpapers/kurisu.jpg
 
 #floating size
 
