@@ -10,8 +10,8 @@ cd ~/Downloads/git
 git clone https://github.com/some-interesting-nickname/Dot-files
 cd Dot-files
 cd packages
-sudo pacman -S < pkglist --noconfirm
-paru -S < pklist_aur --noconfirm
+pacman -S $(cat pkglist | cut -d' ' -f1) --noconfirm
+paru -S $(cat pkglist_aur | cut -d' ' -f1) --noconfirm
 
 #Configs for i3wm, kitty and etc
 if [ -d "~/.config/i3" ]
