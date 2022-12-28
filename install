@@ -1,0 +1,61 @@
+#!/bin/sh
+sudo pacman -Syu 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+mkdir ~/Downloads/git
+cd ~/Downloads/git
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ~/Downloads/git
+git clone https://github.com/some-interesting-nickname/Dot-files
+cd Dot-files
+cd packages
+sudo pacman -S < pkglist --noconfirm
+paru -S < pklist_aur --noconfirm
+
+#Configs for i3wm, kitty and etc
+if [ -d "~/.config/i3" ]
+then
+    rm -r ~/.config/i3
+    cp -r ~/Downloads/git/Dot-files/i3
+else
+    cp -r ~/Downloads/git/Dot-files/i3  ~/.config/
+fi
+
+if [ -d "~/.config/kitty" ]
+then
+    rm -r ~/.config/kitty
+    cp -r ~/Downloads/git/Dot-files/kitty
+else
+    cp -r ~/Downloads/git/Dot-files/kitty ~/.config/
+
+fi
+
+if [ -d "~/.config/nvim" ]
+then
+    rm -r ~/.config/nvim
+    cp -r ~/Downloads/git/Dot-files/nvim
+else
+    cp -r ~/Downloads/git/Dot-files/nvim ~/.config/
+
+fi
+
+if [ -d "~/.config/rofi" ]
+then
+    rm -r ~/.config/rofi
+    cp -r ~/Downloads/git/Dot-files/rofi
+else
+    cp -r ~/Downloads/git/Dot-files/rofi ~/.config/
+
+fi
+cp ~/Downloads/git/Dot-files/picom.conf ~/.config
+#My bashrc
+rm ~/.bashrc
+cp ~/Downloads/git/Dot-files/.bashrc
+
+#Copy wallpapers
+cp -r ~/Downloads/git/Dot-files/wallpapers ~/Documents
+
+#install japanese fonts
+paru -S ttf-tw wqy-microhei wqy-zenhei ttf-arphic-ukai ttf-arphic-uming opendesktop-fonts wqy-bitmapfont ttf-hannom otf-ipafont ttf-vlgothic ttf-mplus ttf-ipa-mona ttf-monapo ttf-sazanami ttf-baekmuk ttf-alee ttf-unfonts-core ttf-nanum ttf-nanumgothic_coding --noconfirm
+
