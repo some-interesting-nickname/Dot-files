@@ -294,7 +294,7 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 ## App shortcuts
 bindsym $mod+w exec librewolf
 bindsym $mod+n exec /usr/bin/thunar
-bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
+bindsym Print exec "scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png"
 bindsym $mod+Shift+Print exec flameshot gui
 
 ##########################################
@@ -306,7 +306,8 @@ bindsym $mod+Shift+Print exec flameshot gui
 
 set $ws1 1:
 set $ws2 2:
-set $ws3 3:
+#set $ws3 3:
+set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
@@ -327,6 +328,9 @@ set $ws10 10:
 # bind program to workspace and focus to them on startup:
 
 # Open applications on specific workspaces
+assign [class="librewolf"] $ws2
+assign [class="Librewolf"] $ws2
+assign [class="Navigator"] $ws2
 assign [class="LibreWolf"] $ws2
 #assign [class="URxvt"] $ws1
 assign [class="Subl"] $ws3
@@ -335,7 +339,7 @@ assign [class="subl"] $ws3
 assign [class="qBittorrent"] $ws10
 
 #assign [class="Xfce4-terminal"] $ws1
-#assign [class="(?i)firefox"] $ws2
+#assign [class="firefox"] $ws2
 #assign [class="Thunar"] $ws3
 #assign [class="Thunderbird"] $ws4
 #assign [class="TelegramDesktop"] $ws5
@@ -401,6 +405,8 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec --no-startup-id sleep 3 && thunar
 
 #Touchpad click om tap
+# Needs 'xf86-input-synaptics' package to work
+# https://wiki.archlinux.org/title/Touchpad_Synaptics#Synclient
 exec synclient TapButton1=1 ClickFinger1=0
 exec synclient TapButton2=3 ClickFinger2=0
 exec synclient TapButton3=2 ClickFinger3=0 
@@ -409,9 +415,9 @@ exec synclient TapButton3=2 ClickFinger3=0
 exec librewolf
 exec kitty
 exec qbittorrent
-exec subl
+#exec subl
 exec flameshot
-exec warp-cli connect
+#e-xec warp-cli connect
 exec picom
 #set lockscreen
 exec --no-startup-id betterlockscreen -u /home/me/Documents/wallpapers/eclipse_moon_astronomy_119271_1920x1080.jpg
